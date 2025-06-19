@@ -1,9 +1,9 @@
 import { Link, useLoaderData } from "react-router-dom";
 import ProductDetails from "../components/ProductDetails";
-import { GetProduct} from "../types";
+import { GetProduct } from "../types";
 
 export default function Products() {
-  const data = useLoaderData() as GetProduct;
+  const data = (useLoaderData() as GetProduct) || [];
 
   return (
     <>
@@ -28,14 +28,9 @@ export default function Products() {
             </tr>
           </thead>
           <tbody>
-            {
-              data.map(product => (
-                <ProductDetails
-                  key={product.id}
-                  product={product}
-                />
-              ))
-            }
+            {data.map((product) => (
+              <ProductDetails key={product.id} product={product} />
+            ))}
           </tbody>
         </table>
       </div>
